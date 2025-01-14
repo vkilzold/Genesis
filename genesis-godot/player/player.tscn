@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5noglwscypw7"]
+
+[ext_resource type="Script" path="res://player/scripts/player.gd" id="1_knfb4"]
+[ext_resource type="Texture2D" uid="uid://bhug646vv23ky" path="res://player/sprites/samurai-test/Sprites/IDLE.png" id="2_punmd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7xowa"]
+
+[sub_resource type="Animation" id="Animation_y7ox6"]
+resource_name = "idle_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.366667, 0.466667, 0.566667, 0.666667, 0.766667, 0.866667, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_pnu1s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0lq74"]
+_data = {
+"RESET": SubResource("Animation_pnu1s"),
+"idle_down": SubResource("Animation_y7ox6")
+}
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(25, 14)
+script = ExtResource("1_knfb4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7xowa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_punmd")
+hframes = 10
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0lq74")
+}
