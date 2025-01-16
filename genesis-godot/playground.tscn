@@ -5,6 +5,7 @@
 [node name="playground" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_ysipq")]
+position = Vector2(18, 50)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(21, 36)
